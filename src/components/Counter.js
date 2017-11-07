@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import pure from 'recompose/pure'
 import styled from 'styled-components'
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import Button from 'react-bootstrap/lib/Button';
+
 
 const Intro = styled.p`font-size: large;`
 
@@ -16,6 +19,11 @@ function Counter({ increment, incrementIfOdd, decrement, counter }) {
         Clicked: {counter} times <button onClick={increment}>+</button> <button onClick={decrement}>-</button>{' '}
         <button onClick={incrementIfOdd}>Increment if odd</button>
       </p>
+      <ButtonGroup>
+        <Button>Left</Button>
+        <Button>Middle</Button>
+        <Button>Right</Button>
+      </ButtonGroup>
     </section>
   )
 }
