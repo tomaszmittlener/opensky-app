@@ -1,5 +1,37 @@
 import { map } from 'lodash'
 
+function setStatus(isOnGround, verticalRate) {
+  let status
+  if (isOnGround) {
+    status = 'landed'
+  } else if (verticalRate) {
+    status = verticalRate > 0 ? 'rising' : 'landing'
+  }
+  return status
+}
+
+function setLocation(longitude, latitude) {
+  return `http://www.google.com/maps/place/${latitude},${longitude}`
+}
+
+export function getFlights(cityData, allFlights) {
+  return map(allFlights, flight => {
+    return {
+      icao: flight[0],
+      callSign: flight[1],
+      countryOrigin: flight[2],
+      onGround: flight[8],
+      velocity: flight[9],
+      verticalRate: flight[11],
+      longitude: flight[5],
+      latitude: flight[6],
+      status: setStatus(flight[8], flight[11]),
+      location: setLocation(flight[5], flight[6]),
+      distance: getCoordinatesDistance(flight[6], flight[5], cityData.latitude, cityData.longitude),
+    }
+  })
+}
+
 function getCoordinatesDistance(lat1, lon1, lat2, lon2) {
   const R = 6371 // Radius of the earth in km
   const dLat = deg2rad(lat2 - lat1) // deg2rad below
@@ -14,13 +46,4 @@ function getCoordinatesDistance(lat1, lon1, lat2, lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180)
-}
-
-export function getFlights(cityData, allFlights) {
-  return map(allFlights, flight => {
-    return {
-      flight: flight[0],
-      distance: getCoordinatesDistance(flight[6], flight[5], cityData.latitude, cityData.longitude),
-    }
-  })
 }

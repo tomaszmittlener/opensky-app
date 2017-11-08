@@ -7,7 +7,9 @@ import Table from 'react-bootstrap/lib/Table'
 
 class CitiesTable extends React.Component {
   onCityClick = cityData => {
-    this.props.getClosestFlights(cityData)
+    const { getClosestFlights, toggleDialogShow } = this.props
+    getClosestFlights(cityData)
+    toggleDialogShow(cityData.city)
   }
 
   render() {
@@ -42,6 +44,7 @@ class CitiesTable extends React.Component {
 CitiesTable.propTypes = {
   citiesList: PropTypes.array.isRequired,
   getClosestFlights: PropTypes.func.isRequired,
+  toggleDialogShow: PropTypes.func.isRequired,
 }
 
 export default CitiesTable

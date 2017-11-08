@@ -6,3 +6,5 @@ export const ALL_GET_ERROR = 'airTraffic/ALL_GET_ERROR'
 export const COORDINATES_ALL_SET = 'airTraffic/COORDINATES_ALL_SET'
 
 export const CLOSEST_FLIGHTS_SET = 'airTraffic/CLOSEST_FLIGHTS_SET'
+
+export const TOGGLE_DIALOG_SHOW = 'airTraffic/TOGGLE_DIALOG_SHOW'

@@ -6,6 +6,7 @@ import { getFlights } from '../halpers/measureDistanceHelper'
 export const allAirTraffic = createAction(airTraffic.ALL_GET)
 export const allCoordinates = createAction(airTraffic.COORDINATES_ALL_SET)
 export const closestFlights = createAction(airTraffic.CLOSEST_FLIGHTS_SET)
+export const toggleDialog = createAction(airTraffic.TOGGLE_DIALOG_SHOW)
 
 export function getAllAirTraffic() {
   return dispatch => {
@@ -17,6 +18,13 @@ export function getAllAirTraffic() {
 export function getCoordinates(allTraffic) {
   return (dispatch, getState) => {
     dispatch(allCoordinates(getAllFlightsCoordinates(allTraffic)))
+  }
+}
+
+export function toggleDialogShow(city) {
+  const currentCity = typeof city === 'string' ? city : ''
+  return (dispatch, getState) => {
+    dispatch(toggleDialog(currentCity))
   }
 }
 

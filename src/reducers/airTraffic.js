@@ -7,6 +7,10 @@ const initialState = {
   loaded: false,
   error: '',
   flightsDistance: {},
+  dialogState: {
+    isOpen: false,
+    currentCity: '',
+  },
 }
 
 export default function counter(state = initialState, action) {
@@ -19,13 +23,21 @@ export default function counter(state = initialState, action) {
     case airTraffic.ALL_GET_ERROR:
       const errorMsg = action.payload.message
       return { ...state, errorMsg, loaded: false, loading: false }
+
     case airTraffic.COORDINATES_ALL_SET:
       const allCoordinates = action.payload
       return { ...state, allCoordinates }
+
     case airTraffic.CLOSEST_FLIGHTS_SET:
       const { flights, city } = action.payload
       const flightsDistance = { [city]: flights }
       return { ...state, flightsDistance: { ...state.flightsDistance, ...flightsDistance } }
+
+    case airTraffic.TOGGLE_DIALOG_SHOW:
+      const currentCity = action.payload ? action.payload : ''
+      const dialogState = { isOpen: !state.dialogState.isOpen, currentCity: currentCity }
+      return { ...state, dialogState }
+
     default:
       return state
   }
