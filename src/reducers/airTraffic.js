@@ -2,7 +2,6 @@ import * as airTraffic from '../constants/airTraffic'
 
 const initialState = {
   allFlights: [],
-  allCoordinates: [],
   loading: false,
   loaded: false,
   error: '',
@@ -10,6 +9,7 @@ const initialState = {
   dialogState: {
     isOpen: false,
     currentCity: '',
+    distance: 50,
   },
 }
 
@@ -24,10 +24,6 @@ export default function counter(state = initialState, action) {
       const errorMsg = action.payload.message
       return { ...state, errorMsg, loaded: false, loading: false }
 
-    case airTraffic.COORDINATES_ALL_SET:
-      const allCoordinates = action.payload
-      return { ...state, allCoordinates }
-
     case airTraffic.CLOSEST_FLIGHTS_SET:
       const { flights, city } = action.payload
       const flightsDistance = { [city]: flights }
@@ -35,8 +31,17 @@ export default function counter(state = initialState, action) {
 
     case airTraffic.TOGGLE_DIALOG_SHOW:
       const currentCity = action.payload ? action.payload : ''
-      const dialogState = { isOpen: !state.dialogState.isOpen, currentCity: currentCity }
+      const dialogState = {
+        ...state.dialogState,
+        isOpen: !state.dialogState.isOpen,
+        currentCity: currentCity,
+        distance: 50,
+      }
       return { ...state, dialogState }
+
+    case airTraffic.PAGINATION_SET:
+      const distance = action.payload
+      return { ...state, dialogState: { ...state.dialogState, distance } }
 
     default:
       return state

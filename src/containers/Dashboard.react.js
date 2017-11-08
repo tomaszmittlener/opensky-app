@@ -7,6 +7,7 @@ import * as AirTrafficActions from '../actions/airTraffic'
 import CitiesTable from '../components/CitiesTable.react'
 import { citiesList } from '../constants/citiesList'
 import Dialog from '../components/Dialog.react'
+import Loader from '../components/Loader.react'
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -16,20 +17,25 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { getClosestFlights, airTraffic, toggleDialogShow } = this.props
-    const { dialogState: { isOpen, currentCity }, flightsDistance } = airTraffic
-
+    const { getClosestFlights, airTraffic, toggleDialogShow, setPagination } = this.props
+    const { dialogState, dialogState: { currentCity }, flightsDistance } = airTraffic
+    const isLoadoing = airTraffic.loading && !airTraffic.loaded
     return (
       <div>
-        <CitiesTable
-          citiesList={citiesList}
-          getClosestFlights={getClosestFlights}
-          toggleDialogShow={toggleDialogShow}
-        />
+        {isLoadoing ? (
+          <Loader />
+        ) : (
+          <CitiesTable
+            citiesList={citiesList}
+            getClosestFlights={getClosestFlights}
+            toggleDialogShow={toggleDialogShow}
+          />
+        )}
         <Dialog
+          setPagination={setPagination}
           toggleDialogShow={toggleDialogShow}
-          showDialog={airTraffic.dialogState.isOpen}
-          flightsList={flightsDistance[airTraffic.dialogState.currentCity]}
+          dialogState={dialogState}
+          flightsList={flightsDistance[currentCity]}
         />
       </div>
     )
@@ -39,6 +45,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   airTraffic: PropTypes.object.isRequired,
   getAllAirTraffic: PropTypes.func.isRequired,
+  setPagination: PropTypes.func.isRequired,
   getClosestFlights: PropTypes.func.isRequired,
   toggleDialogShow: PropTypes.func.isRequired,
 }

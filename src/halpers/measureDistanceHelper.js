@@ -1,4 +1,23 @@
-import { map } from 'lodash'
+import { map, sortBy } from 'lodash'
+
+export function getFlights(cityData, allFlights) {
+  const list = map(allFlights, flight => {
+    return {
+      icao: flight[0],
+      callSign: flight[1],
+      countryOrigin: flight[2],
+      onGround: flight[8],
+      velocity: roundNumber(convertToKmH(flight[9])),
+      verticalRate: flight[11],
+      longitude: flight[5],
+      latitude: flight[6],
+      status: setStatus(flight[8], flight[11]),
+      location: setLocation(flight[5], flight[6]),
+      distance: roundNumber(setDistanceBetweenCoordinates(flight[6], flight[5], cityData.latitude, cityData.longitude)),
+    }
+  })
+  return sortBy(list, item => item.distance)
+}
 
 function setStatus(isOnGround, verticalRate) {
   let status
@@ -14,25 +33,14 @@ function setLocation(longitude, latitude) {
   return `http://www.google.com/maps/place/${latitude},${longitude}`
 }
 
-export function getFlights(cityData, allFlights) {
-  return map(allFlights, flight => {
-    return {
-      icao: flight[0],
-      callSign: flight[1],
-      countryOrigin: flight[2],
-      onGround: flight[8],
-      velocity: flight[9],
-      verticalRate: flight[11],
-      longitude: flight[5],
-      latitude: flight[6],
-      status: setStatus(flight[8], flight[11]),
-      location: setLocation(flight[5], flight[6]),
-      distance: getCoordinatesDistance(flight[6], flight[5], cityData.latitude, cityData.longitude),
-    }
-  })
+function roundNumber(number) {
+  return Math.round(number)
+}
+function convertToKmH(velocity) {
+  return velocity * 3.6
 }
 
-function getCoordinatesDistance(lat1, lon1, lat2, lon2) {
+function setDistanceBetweenCoordinates(lat1, lon1, lat2, lon2) {
   const R = 6371 // Radius of the earth in km
   const dLat = deg2rad(lat2 - lat1) // deg2rad below
   const dLon = deg2rad(lon2 - lon1)
