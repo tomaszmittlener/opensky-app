@@ -6,6 +6,8 @@
   "dependencies": {
     "connected-react-router": "^4.2.3",
     "history": "^4.7.2",
+    "js-cookie": "^2.2.0",
+    "js-cookies": "^1.0.4",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
