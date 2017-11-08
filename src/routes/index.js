@@ -1,20 +1,23 @@
 import React from 'react'
 import { CounterContainer } from 'containers'
+import { Login }  from 'containers'
+import { Dashboard } from 'containers'
+import { PrivateRoute } from 'containers'
 import { Header } from 'components'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import styled from 'styled-components'
+import { Route } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { createBrowserHistory } from 'history'
+const history = createBrowserHistory()
 
-const Container = styled.div`text-align: center;`
-
-function Routes() {
+const Routes = () => {
   return (
-    <Router>
-      <Container>
-        <Header />
-        <Route path="/" component={CounterContainer} />
-      </Container>
-    </Router>
+    <ConnectedRouter history={history} >
+      <div>
+      <Route exact path="/login" component={Login}/>
+      <PrivateRoute exact path="/" component={Dashboard} />
+      </div>
+    </ConnectedRouter>
   )
-}
+};
 
 export default Routes
