@@ -3,10 +3,13 @@ import ReduxThunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from 'reducers'
 import { routerMiddleware } from 'connected-react-router'
+import promiseMiddleware from 'redux-promise-middleware';
 
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [routerMiddleware(), ReduxThunk]
+  const middlewares = [promiseMiddleware({
+    promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']
+  }), routerMiddleware(), ReduxThunk]
   const enhancers = [
     applyMiddleware(...middlewares),
     // other store enhancers if any

@@ -49,7 +49,7 @@ class Login extends React.Component {
           </InputGroup>
         </FormGroup>
         <Button
-          type="button"
+          type="submit"
           onClick={this.onLoginClick}
         >Login
         </Button>
