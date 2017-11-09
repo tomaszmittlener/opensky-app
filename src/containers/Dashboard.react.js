@@ -4,8 +4,18 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as dashboardActions from '../actions/dashboard'
-import { CitiesTable, Dialog, Loader } from 'components'
+import { CitiesTable, Dialog, Loader, Header } from 'components'
 import { citiesList } from '../constants/citiesList'
+import styled from 'styled-components'
+import PageHeader from 'react-bootstrap/lib/PageHeader'
+import Col from 'react-bootstrap/lib/Col'
+
+const DashboardContainer = styled.div`
+  .table-title {
+    text-align: center
+    padding: 10px 0
+  }
+`
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -19,15 +29,19 @@ class Dashboard extends React.Component {
     const { flightsListState, flightsListState: { currentCity }, flightsByCities } = dashboard
     const isLoading = dashboard.loading && !dashboard.loaded
     return (
-      <div>
+      <DashboardContainer>
+        <Header />
         {isLoading ? (
           <Loader />
         ) : (
-          <CitiesTable
-            citiesList={citiesList}
-            getClosestFlights={getClosestFlights}
-            toggleDialogShow={toggleDialogShow}
-          />
+          <div className="tableContainer">
+            <h3 className="table-title">Chose city to display nearest flights</h3>
+            <CitiesTable
+              citiesList={citiesList}
+              getClosestFlights={getClosestFlights}
+              toggleDialogShow={toggleDialogShow}
+            />
+          </div>
         )}
         <Dialog
           setPagination={setPagination}
@@ -35,7 +49,7 @@ class Dashboard extends React.Component {
           flightsListState={flightsListState}
           flightsList={flightsByCities[currentCity]}
         />
-      </div>
+      </DashboardContainer>
     )
   }
 }

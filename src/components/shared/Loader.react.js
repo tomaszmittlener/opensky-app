@@ -18,7 +18,7 @@ const Loading = styled.div`
 `
 
 function Loader() {
-  return <Loading />
+  return <Loading className="loader" />
 }
 
 export default pure(Loader)

@@ -1,5 +1,6 @@
 //shared
 export { default as Loader } from './shared/Loader.react'
+export { default as Header } from './shared/Header.react'
 
 //login
 export { default as LoginForm } from './login/LoginForm.react'
