@@ -4,24 +4,20 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
-import FormGroup from 'react-bootstrap/lib/FormGroup'
-import ControlLabel from 'react-bootstrap/lib/ControlLabel'
-import FormControl from 'react-bootstrap/lib/FormControl'
-import InputGroup from 'react-bootstrap/lib/InputGroup'
-import Button from 'react-bootstrap/lib/Button';
-
+import Col from 'react-bootstrap/lib/Col'
+import PageHeader from 'react-bootstrap/lib/PageHeader'
+import LoginForm from '../components/LoginForm.react'
 
 class Login extends React.Component {
-
-  onLoginChange = (e) => {
+  onLoginChange = e => {
     this.props.setLoginOnInput(e.target.value)
   }
 
-  onPasswordChange = (e) => {
+  onPasswordChange = e => {
     this.props.setPasswordOnInput(e.target.value)
   }
 
-  onLoginClick = (e) => {
+  onLoginClick = e => {
     e.preventDefault()
     this.props.loginAuthenticate()
     this.props.history.push('/')
@@ -29,31 +25,14 @@ class Login extends React.Component {
 
   render() {
     return (
-      <form>
-        <FormGroup>
-          <InputGroup>
-            <ControlLabel
-            >Login
-            </ControlLabel>
-            <FormControl
-              type="text"
-              onChange={this.onLoginChange}
-            />
-          </InputGroup>
-          <InputGroup>
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              type="password"
-              onChange={this.onPasswordChange}
-            />
-          </InputGroup>
-        </FormGroup>
-        <Button
-          type="submit"
-          onClick={this.onLoginClick}
-        >Login
-        </Button>
-      </form>
+      <Col xs={4} xsOffset={4}>
+        <PageHeader>Sign in to SkyApp</PageHeader>
+        <LoginForm
+          onLoginChange={this.onLoginChange}
+          onPasswordChange={this.onPasswordChange}
+          onLoginClick={this.onLoginClick}
+        />
+      </Col>
     )
   }
 }
@@ -61,20 +40,15 @@ class Login extends React.Component {
 Login.PropTypes = {
   setLoginOnInput: PropTypes.func.isRequired,
   setPasswordOnInput: PropTypes.func.isRequired,
-  loginAuthenticate: PropTypes.func.isRequired
+  loginAuthenticate: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = createStructuredSelector({
-  auth: createSelector(
-    (state) => state.auth,
-    (authState) => authState
-  ),
-
+  auth: createSelector(state => state.auth, authState => authState),
 })
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(AuthActions, dispatch)
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
