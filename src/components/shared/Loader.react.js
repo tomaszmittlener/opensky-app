@@ -9,7 +9,7 @@ const rotate360 = keyframes`
 
 const Loading = styled.div`
   border: 10px solid #f3f3f3;
-  border-top: 10px solid #3498db;
+  border-top: 10px solid black;
   border-radius: 50%;
   width: 100px;
   height: 100px;

@@ -14,8 +14,10 @@ const CitiesTablaeContainer = styled.div`
 
 class CitiesTable extends React.Component {
   onCityClick = cityData => {
-    const { getClosestFlights, toggleDialogShow } = this.props
-    getClosestFlights(cityData)
+    const { getClosestFlights, toggleDialogShow, flightsByCities } = this.props
+    if (!flightsByCities[cityData.city]) {
+      getClosestFlights(cityData)
+    }
     toggleDialogShow(cityData.city)
   }
 

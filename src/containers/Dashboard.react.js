@@ -51,6 +51,7 @@ class Dashboard extends React.Component {
               citiesList={citiesList}
               getClosestFlights={getClosestFlights}
               toggleDialogShow={toggleDialogShow}
+              flightsByCities={flightsByCities}
             />
           )}
         </div>
