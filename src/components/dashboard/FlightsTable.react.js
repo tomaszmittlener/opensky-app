@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createStructuredSelector, createSelector } from 'reselect'
 import { map } from 'lodash'
 import Table from 'react-bootstrap/lib/Table'
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createStructuredSelector, createSelector } from 'reselect'
 import { map, sortBy } from 'lodash'
 import Table from 'react-bootstrap/lib/Table'
 import styled from 'styled-components'

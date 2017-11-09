@@ -12,10 +12,6 @@ import { createStructuredSelector, createSelector } from 'reselect'
 const history = createBrowserHistory()
 
 export class Routes extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     if (sessionStorage.getItem('isLoggedIn')) {
       this.props.loginUser(true)

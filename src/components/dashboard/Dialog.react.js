@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { createStructuredSelector, createSelector } from 'reselect'
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
 import { FlightsTable, DistanceRangeChoose } from '../'
