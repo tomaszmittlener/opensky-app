@@ -1,5 +1,4 @@
 import React from 'react'
-import pure from 'recompose/pure'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'

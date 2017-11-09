@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { createStructuredSelector, createSelector } from 'reselect'
-import { map } from 'lodash'
+import { map, sortBy } from 'lodash'
 import Table from 'react-bootstrap/lib/Table'
 import styled from 'styled-components'
 
@@ -31,7 +31,7 @@ class CitiesTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {map(citiesList, (city, index) => {
+            {map(sortBy(citiesList, city => city.city), (city, index) => {
               const cityData = {
                 city: city.city,
                 longitude: city.longitude,
