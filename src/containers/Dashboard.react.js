@@ -17,10 +17,10 @@ class Dashboard extends React.Component {
   render() {
     const { getClosestFlights, dashboard, toggleDialogShow, setPagination } = this.props
     const { flightsListState, flightsListState: { currentCity }, flightsByCities } = dashboard
-    const isLoadoing = dashboard.loading && !dashboard.loaded
+    const isLoading = dashboard.loading && !dashboard.loaded
     return (
       <div>
-        {isLoadoing ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <CitiesTable

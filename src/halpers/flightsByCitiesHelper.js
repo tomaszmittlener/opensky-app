@@ -1,6 +1,6 @@
 import { map, sortBy } from 'lodash'
 
-export function getFlights(cityData, allFlights) {
+export function setFlightsByCities(cityData, allFlights) {
   const list = map(allFlights, flight => {
     return {
       icao: flight[0],

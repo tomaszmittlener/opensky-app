@@ -1,7 +1,7 @@
 import * as dashboard from '../constants/actionTypes/dashboard'
 import { createAction } from 'redux-actions'
 import { getAirTraffic } from '../services/getAirTraffic'
-import { getFlights } from '../halpers/measureDistanceHelper'
+import { setFlightsByCities } from '../halpers/flightsByCitiesHelper'
 
 export const allAirTraffic = createAction(dashboard.ALL_GET)
 export const closestFlights = createAction(dashboard.CLOSEST_FLIGHTS_SET)
@@ -30,7 +30,7 @@ export function setPagination(number) {
 export function getClosestFlights(cityData) {
   return (dispatch, getState) => {
     const state = getState()
-    const flights = getFlights(cityData, state.dashboard.allFlights)
+    const flights = setFlightsByCities(cityData, state.dashboard.allFlights)
     const data = { city: cityData.city, flights }
 
     dispatch(closestFlights(data))
