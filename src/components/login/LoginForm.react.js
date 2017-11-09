@@ -15,6 +15,9 @@ const LoginFormContainer = styled.div`
   .login-form {
     width: 300px;
   }
+  .loginButton {
+    margin: 0 0 15px 0;
+  }
 `
 
 const LoginForm = ({ onLoginChange, onPasswordChange, onLoginClick }) => (
@@ -36,7 +39,7 @@ const LoginForm = ({ onLoginChange, onPasswordChange, onLoginClick }) => (
 
       <FormGroup>
         <Col sm={12}>
-          <Button type="submit" onClick={onLoginClick}>
+          <Button type="submit" onClick={onLoginClick} className="loginButton">
             Login
           </Button>
         </Col>

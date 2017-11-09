@@ -6,14 +6,17 @@ import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
 import { LoginForm } from 'components'
 import styled from 'styled-components'
+import Modal from 'react-bootstrap/lib/Modal'
 
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-
   .login-title {
     text-align: center;
     padding: 10px 0;
+  }
+  .modal-dialog {
+    width: 400px;
   }
 `
 
@@ -35,12 +38,14 @@ class Login extends Component {
   render() {
     return (
       <LoginContainer>
-        <h2 className="login-title">Sign in to SkyApp</h2>
-        <LoginForm
-          onLoginChange={this.onLoginChange}
-          onPasswordChange={this.onPasswordChange}
-          onLoginClick={this.onLoginClick}
-        />
+        <Modal.Dialog>
+          <h2 className="login-title">Sign in to SkyApp</h2>
+          <LoginForm
+            onLoginChange={this.onLoginChange}
+            onPasswordChange={this.onPasswordChange}
+            onLoginClick={this.onLoginClick}
+          />
+        </Modal.Dialog>
       </LoginContainer>
     )
   }
