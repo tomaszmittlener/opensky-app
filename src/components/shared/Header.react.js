@@ -1,15 +1,16 @@
 import React from 'react'
 import pure from 'recompose/pure'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
-const TopBar = styled.div` 
-  background-color: #222; 
-  height: 100px; 
-  padding: 20px; 
-  color: #fff; 
- 
+const TopBar = styled.div`
+  background-color: #222;
+  height: 100px;
+  padding: 20px;
+  color: #fff;
+
   .header-title {
-  text-align: center
+    text-align: center;
+  }
 `
 
 function Header() {

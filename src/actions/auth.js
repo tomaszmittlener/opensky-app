@@ -1,13 +1,14 @@
 import * as auth from '../constants/actionTypes/auth'
 import { createAction } from 'redux-actions'
 
-export const login = createAction(auth.LOGIN_SET)
+export const setLogin = createAction(auth.LOGIN_SET)
 export const password = createAction(auth.PASSWORD_SET)
 export const authenticate = createAction(auth.AUTHENTICATE)
+export const login = createAction(auth.LOGIN)
 
 export function setLoginOnInput(value) {
   return dispatch => {
-    dispatch(login(value))
+    dispatch(setLogin(value))
   }
 }
 
@@ -25,6 +26,13 @@ export function loginAuthenticate() {
     } else {
       login = false
     }
-    dispatch(authenticate(login))
+    dispatch(loginUser(login))
+  }
+}
+
+export function loginUser(isLoggedIn) {
+  return dispatch => {
+    sessionStorage.setItem('isLoggedIn', isLoggedIn)
+    dispatch(authenticate(isLoggedIn))
   }
 }

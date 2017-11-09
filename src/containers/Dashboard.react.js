@@ -4,17 +4,19 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as dashboardActions from '../actions/dashboard'
+import * as authActions from '../actions/auth'
 import { CitiesTable, Dialog, Loader, Header } from 'components'
 import { citiesList } from '../constants/citiesList'
 import styled from 'styled-components'
-import PageHeader from 'react-bootstrap/lib/PageHeader'
-import Col from 'react-bootstrap/lib/Col'
+import Button from 'react-bootstrap/lib/Button'
 
 const DashboardContainer = styled.div`
+.tableContainer {
   .table-title {
     text-align: center
     padding: 10px 0
   }
+}
 `
 
 class Dashboard extends React.Component {
@@ -24,13 +26,17 @@ class Dashboard extends React.Component {
     }
   }
 
+  onLogoutClick = () => {
+    this.props.loginUser(false)
+  }
+
   render() {
     const { getClosestFlights, dashboard, toggleDialogShow, setPagination } = this.props
     const { flightsListState, flightsListState: { currentCity }, flightsByCities } = dashboard
     const isLoading = dashboard.loading && !dashboard.loaded
     return (
       <DashboardContainer>
-        <Header />
+        <Header onLogoutClick={this.logoutUser} />
         {isLoading ? (
           <Loader />
         ) : (
@@ -41,6 +47,7 @@ class Dashboard extends React.Component {
               getClosestFlights={getClosestFlights}
               toggleDialogShow={toggleDialogShow}
             />
+            <Button onClick={this.onLogoutClick}>Log out</Button>
           </div>
         )}
         <Dialog
@@ -67,7 +74,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(dashboardActions, dispatch)
+  return bindActionCreators({ ...dashboardActions, ...authActions }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

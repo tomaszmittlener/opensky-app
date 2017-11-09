@@ -1,21 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Login } from 'containers'
 import { Dashboard } from 'containers'
 import PrivateRoute from './PrivateRoute.react'
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import { createBrowserHistory } from 'history'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as AuthActions from '../actions/auth'
+import { createStructuredSelector, createSelector } from 'reselect'
+
 const history = createBrowserHistory()
 
-const Routes = () => {
-  return (
-    <ConnectedRouter history={history}>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <PrivateRoute exact path="/" component={Dashboard} />
-      </Switch>
-    </ConnectedRouter>
-  )
+export class Routes extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+    if (sessionStorage.getItem('isLoggedIn')) {
+      this.props.loginUser(true)
+      history.push('/')
+    }
+  }
+
+  render() {
+    return (
+      <ConnectedRouter history={history}>
+        <div>
+          <Route path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={Dashboard} />
+        </div>
+      </ConnectedRouter>
+    )
+  }
 }
 
-export default Routes
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(AuthActions, dispatch)
+}
+
+export default connect(() => {}, mapDispatchToProps)(Routes)

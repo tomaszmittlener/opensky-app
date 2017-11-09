@@ -7,22 +7,15 @@ import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
 
 class PrivatePath extends React.Component {
-
   render() {
-    return (
-      <Route
-        exact={this.props.exact}
-        path={this.props.path}
-        render={() => (
-          this.props.auth.isLoggedIn ? (
-            React.createElement(this.props.component)
-          ) : (
-            <Redirect to={{
-              pathname: '/login',
-              state: {from: this.props.router.location.pathname}
-            }}/>
-          )
-        )}
+    return this.props.auth.isLoggedIn ? (
+      <Route exact={this.props.exact} path={this.props.path} component={this.props.component} />
+    ) : (
+      <Redirect
+        to={{
+          pathname: '/login',
+          state: { from: this.props.router.location.pathname },
+        }}
       />
     )
   }
@@ -36,14 +29,8 @@ PrivatePath.PropTypes = {
 }
 
 const mapStateToProps = createStructuredSelector({
-  auth: createSelector(
-    (state) => state.auth,
-    (authState) => authState
-  ),
-  router: createSelector(
-    (state) => state.router,
-    (authState) => authState
-  ),
+  auth: createSelector(state => state.auth, authState => authState),
+  router: createSelector(state => state.router, authState => authState),
 })
 
 function mapDispatchToProps(dispatch) {
