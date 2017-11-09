@@ -11,12 +11,18 @@ import styled from 'styled-components'
 import Button from 'react-bootstrap/lib/Button'
 
 const DashboardContainer = styled.div`
-.tableContainer {
-  .table-title {
-    text-align: center
-    padding: 10px 0
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .table-title {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .logout-button {
+    }
   }
-}
 `
 
 class Dashboard extends React.Component {
@@ -40,14 +46,16 @@ class Dashboard extends React.Component {
         {isLoading ? (
           <Loader />
         ) : (
-          <div className="tableContainer">
-            <h3 className="table-title">Chose city to display nearest flights</h3>
+          <div className="table-container">
+            <h4 className="table-title">Chose city to display nearest flights</h4>
             <CitiesTable
               citiesList={citiesList}
               getClosestFlights={getClosestFlights}
               toggleDialogShow={toggleDialogShow}
             />
-            <Button onClick={this.onLogoutClick}>Log out</Button>
+            <Button className="logout-button" onClick={this.onLogoutClick}>
+              Log out
+            </Button>
           </div>
         )}
         <Dialog
