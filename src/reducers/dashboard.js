@@ -39,7 +39,7 @@ export default function dashboardReducer(state = initialState, action) {
       }
       return { ...state, flightsListState }
 
-    case dashboard.PAGINATION_SET:
+    case dashboard.DISPLAY_DISTANCE_SET:
       const distance = action.payload
       return { ...state, flightsListState: { ...state.flightsListState, distance } }
 

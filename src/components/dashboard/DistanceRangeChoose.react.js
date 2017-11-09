@@ -7,21 +7,21 @@ import DropdownButton from 'react-bootstrap/lib/DropdownButton'
 import MenuItem from 'react-bootstrap/lib/MenuItem'
 
 class DistanceRangeChoose extends React.Component {
-  onPaginationClick(number) {
-    const { setPagination } = this.props
-    setPagination(number)
+  onSetDistanceClick(number) {
+    const { setDistance } = this.props
+    setDistance(number)
   }
 
   render() {
     return (
       <ButtonGroup>
-        <Button onClick={() => this.onPaginationClick(10)}>10</Button>
-        <Button onClick={() => this.onPaginationClick(50)}>50</Button>
+        <Button onClick={() => this.onSetDistanceClick(10)}>10</Button>
+        <Button onClick={() => this.onSetDistanceClick(50)}>50</Button>
         <DropdownButton title="Distance" id="bg-nested-dropdown">
-          <MenuItem eventKey="1" onClick={() => this.onPaginationClick(100)}>
+          <MenuItem eventKey="1" onClick={() => this.onSetDistanceClick(100)}>
             100
           </MenuItem>
-          <MenuItem eventKey="2" onClick={() => this.onPaginationClick(1000)}>
+          <MenuItem eventKey="2" onClick={() => this.onSetDistanceClick(1000)}>
             1000
           </MenuItem>
         </DropdownButton>
@@ -30,7 +30,7 @@ class DistanceRangeChoose extends React.Component {
   }
 }
 DistanceRangeChoose.propTypes = {
-  setPagination: PropTypes.func.isRequired,
+  setDistance: PropTypes.func.isRequired,
 }
 
 export default DistanceRangeChoose

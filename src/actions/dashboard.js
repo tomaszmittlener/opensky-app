@@ -6,7 +6,7 @@ import { setFlightsByCities } from '../halpers/flightsByCitiesHelper'
 export const allAirTraffic = createAction(dashboard.ALL_GET)
 export const closestFlights = createAction(dashboard.CLOSEST_FLIGHTS_SET)
 export const toggleDialog = createAction(dashboard.TOGGLE_DIALOG_SHOW)
-export const pagination = createAction(dashboard.PAGINATION_SET)
+export const distance = createAction(dashboard.DISPLAY_DISTANCE_SET)
 
 export function getAllAirTraffic() {
   return dispatch => {
@@ -21,9 +21,9 @@ export function toggleDialogShow(city) {
   }
 }
 
-export function setPagination(number) {
+export function setDistance(number) {
   return (dispatch, getState) => {
-    dispatch(pagination(number))
+    dispatch(distance(number))
   }
 }
 

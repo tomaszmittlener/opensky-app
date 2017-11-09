@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { getClosestFlights, dashboard, toggleDialogShow, setPagination } = this.props
+    const { getClosestFlights, dashboard, toggleDialogShow, setDistance } = this.props
     const { flightsListState, flightsListState: { currentCity }, flightsByCities } = dashboard
     const isLoading = dashboard.loading && !dashboard.loaded
     return (
@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
           )}
         </div>
         <Dialog
-          setPagination={setPagination}
+          setDistance={setDistance}
           toggleDialogShow={toggleDialogShow}
           flightsListState={flightsListState}
           flightsList={flightsByCities[currentCity]}
@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   dashboard: PropTypes.object.isRequired,
   getAllAirTraffic: PropTypes.func.isRequired,
-  setPagination: PropTypes.func.isRequired,
+  setDistance: PropTypes.func.isRequired,
   getClosestFlights: PropTypes.func.isRequired,
   toggleDialogShow: PropTypes.func.isRequired,
 }

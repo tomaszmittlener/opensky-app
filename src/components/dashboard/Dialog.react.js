@@ -11,7 +11,7 @@ class Dialog extends React.Component {
       flightsListState: { isOpen, distance, currentCity },
       toggleDialogShow,
       flightsList,
-      setPagination,
+      setDistance,
     } = this.props
     return (
       <Modal show={isOpen} onHide={toggleDialogShow}>
@@ -20,7 +20,7 @@ class Dialog extends React.Component {
             Flights in {distance}km range from {currentCity}
           </Modal.Title>
         </Modal.Header>
-        <DistanceRangeChoose setPagination={setPagination} />
+        <DistanceRangeChoose setDistance={setDistance} />
         <Modal.Body>
           <FlightsTable flightsList={flightsList} distance={distance} />
         </Modal.Body>
@@ -32,7 +32,7 @@ class Dialog extends React.Component {
   }
 }
 Dialog.propTypes = {
-  setPagination: PropTypes.func.isRequired,
+  setDistance: PropTypes.func.isRequired,
   toggleDialogShow: PropTypes.func.isRequired,
   flightsList: PropTypes.array,
   flightsListState: PropTypes.object,

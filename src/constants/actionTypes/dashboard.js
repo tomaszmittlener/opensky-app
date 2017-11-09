@@ -5,4 +5,4 @@ export const ALL_GET_ERROR = 'dashboard/ALL_GET_ERROR'
 
 export const CLOSEST_FLIGHTS_SET = 'dashboard/CLOSEST_FLIGHTS_SET'
 export const TOGGLE_DIALOG_SHOW = 'dashboard/TOGGLE_DIALOG_SHOW'
-export const PAGINATION_SET = 'dashboard/PAGINATION_SET'
+export const DISPLAY_DISTANCE_SET = 'dashboard/DISPLAY_DISTANCE_SET'
