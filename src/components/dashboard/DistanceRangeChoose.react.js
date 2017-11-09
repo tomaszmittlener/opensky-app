@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/lib/Button'
 import DropdownButton from 'react-bootstrap/lib/DropdownButton'
 import MenuItem from 'react-bootstrap/lib/MenuItem'
 
-class PaginationButtons extends React.Component {
+class DistanceRangeChoose extends React.Component {
   onPaginationClick(number) {
     const { setPagination } = this.props
     setPagination(number)
@@ -29,8 +29,8 @@ class PaginationButtons extends React.Component {
     )
   }
 }
-PaginationButtons.propTypes = {
+DistanceRangeChoose.propTypes = {
   setPagination: PropTypes.func.isRequired,
 }
 
-export default PaginationButtons
+export default DistanceRangeChoose

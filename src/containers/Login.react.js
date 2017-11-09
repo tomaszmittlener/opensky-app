@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
 import Col from 'react-bootstrap/lib/Col'
 import PageHeader from 'react-bootstrap/lib/PageHeader'
-import LoginForm from '../components/LoginForm.react'
+import { LoginForm } from 'components'
 
 class Login extends React.Component {
   onLoginChange = e => {

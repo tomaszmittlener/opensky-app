@@ -1,4 +1,4 @@
-import * as dashboard from '../constants/dashboard'
+import * as dashboard from '../constants/actionTypes/dashboard'
 
 const initialState = {
   allFlights: [],

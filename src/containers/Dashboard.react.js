@@ -4,10 +4,8 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as dashboardActions from '../actions/dashboard'
-import CitiesTable from '../components/CitiesTable.react'
+import { CitiesTable, Dialog, Loader } from 'components'
 import { citiesList } from '../constants/citiesList'
-import Dialog from '../components/Dialog.react'
-import Loader from '../components/Loader.react'
 
 class Dashboard extends React.Component {
   componentDidMount() {

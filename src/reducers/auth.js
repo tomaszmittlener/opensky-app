@@ -1,4 +1,4 @@
-import * as auth from '../constants/auth'
+import * as auth from '../constants/actionTypes/auth'
 
 const initialState = {
   login: '',

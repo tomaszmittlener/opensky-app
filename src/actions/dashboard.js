@@ -1,4 +1,4 @@
-import * as dashboard from '../constants/dashboard'
+import * as dashboard from '../constants/actionTypes/dashboard'
 import { createAction } from 'redux-actions'
 import { getAirTraffic } from '../services/getAirTraffic'
 import { getFlights } from '../halpers/measureDistanceHelper'

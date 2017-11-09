@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { createStructuredSelector, createSelector } from 'reselect'
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
-import FlightsTable from '../components/FlightsTable.react'
-import PaginationButtons from '../components/PaginationButtons.react'
+import { FlightsTable, DistanceRangeChoose } from 'components'
 
 class Dialog extends React.Component {
   render() {
@@ -21,7 +20,7 @@ class Dialog extends React.Component {
             Flights in {distance}km range from {currentCity}
           </Modal.Title>
         </Modal.Header>
-        <PaginationButtons setPagination={setPagination} />
+        <DistanceRangeChoose setPagination={setPagination} />
         <Modal.Body>
           <FlightsTable flightsList={flightsList} distance={distance} />
         </Modal.Body>
