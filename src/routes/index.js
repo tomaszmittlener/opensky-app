@@ -1,6 +1,5 @@
 import React from 'react'
-import { CounterContainer } from 'containers'
-import { Login }  from 'containers'
+import { Login } from 'containers'
 import { Dashboard } from 'containers'
 import PrivateRoute from './PrivateRoute.react'
 import { Header } from 'components'
@@ -11,13 +10,13 @@ const history = createBrowserHistory()
 
 const Routes = () => {
   return (
-    <ConnectedRouter history={history} >
+    <ConnectedRouter history={history}>
       <div>
-      <Route path="/login" component={Login}/>
-      <PrivateRoute exact path="/" component={Dashboard} />
+        <Route path="/login" component={Login} />
+        <PrivateRoute exact path="/" component={Dashboard} />
       </div>
     </ConnectedRouter>
   )
-};
+}
 
 export default Routes

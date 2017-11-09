@@ -13,7 +13,7 @@ const initialState = {
   },
 }
 
-export default function counter(state = initialState, action) {
+export default function dashboardReducer(state = initialState, action) {
   switch (action.type) {
     case dashboard.ALL_GET_START:
       return { ...state, loading: true, loaded: false }
