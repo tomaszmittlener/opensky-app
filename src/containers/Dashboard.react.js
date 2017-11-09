@@ -8,7 +8,6 @@ import * as authActions from '../actions/auth'
 import { CitiesTable, Dialog, Loader, Header } from 'components'
 import { citiesList } from '../constants/citiesList'
 import styled from 'styled-components'
-import Button from 'react-bootstrap/lib/Button'
 
 const DashboardContainer = styled.div`
   .table-container {
@@ -42,22 +41,19 @@ class Dashboard extends React.Component {
     const isLoading = dashboard.loading && !dashboard.loaded
     return (
       <DashboardContainer>
-        <Header onLogoutClick={this.logoutUser} />
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <div className="table-container">
-            <h4 className="table-title">Chose city to display nearest flights</h4>
+        <Header onLogoutClick={this.onLogoutClick} />
+        <div className="table-container">
+          <h4 className="table-title">Chose city to display nearest flights</h4>
+          {isLoading ? (
+            <Loader />
+          ) : (
             <CitiesTable
               citiesList={citiesList}
               getClosestFlights={getClosestFlights}
               toggleDialogShow={toggleDialogShow}
             />
-            <Button className="logout-button" onClick={this.onLogoutClick}>
-              Log out
-            </Button>
-          </div>
-        )}
+          )}
+        </div>
         <Dialog
           setPagination={setPagination}
           toggleDialogShow={toggleDialogShow}
