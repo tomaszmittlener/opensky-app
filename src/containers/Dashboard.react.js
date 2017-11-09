@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
-import * as AirTrafficActions from '../actions/airTraffic'
+import * as dashboardActions from '../actions/dashboard'
 import CitiesTable from '../components/CitiesTable.react'
 import { citiesList } from '../constants/citiesList'
 import Dialog from '../components/Dialog.react'
@@ -11,15 +11,15 @@ import Loader from '../components/Loader.react'
 
 class Dashboard extends React.Component {
   componentDidMount() {
-    if (!this.props.airTraffic.loaded) {
+    if (!this.props.dashboard.loaded) {
       this.props.getAllAirTraffic()
     }
   }
 
   render() {
-    const { getClosestFlights, airTraffic, toggleDialogShow, setPagination } = this.props
-    const { dialogState, dialogState: { currentCity }, flightsDistance } = airTraffic
-    const isLoadoing = airTraffic.loading && !airTraffic.loaded
+    const { getClosestFlights, dashboard, toggleDialogShow, setPagination } = this.props
+    const { flightsListState, flightsListState: { currentCity }, flightsByCities } = dashboard
+    const isLoadoing = dashboard.loading && !dashboard.loaded
     return (
       <div>
         {isLoadoing ? (
@@ -34,8 +34,8 @@ class Dashboard extends React.Component {
         <Dialog
           setPagination={setPagination}
           toggleDialogShow={toggleDialogShow}
-          dialogState={dialogState}
-          flightsList={flightsDistance[currentCity]}
+          flightsListState={flightsListState}
+          flightsList={flightsByCities[currentCity]}
         />
       </div>
     )
@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.propTypes = {
-  airTraffic: PropTypes.object.isRequired,
+  dashboard: PropTypes.object.isRequired,
   getAllAirTraffic: PropTypes.func.isRequired,
   setPagination: PropTypes.func.isRequired,
   getClosestFlights: PropTypes.func.isRequired,
@@ -51,11 +51,11 @@ Dashboard.propTypes = {
 }
 
 const mapStateToProps = createStructuredSelector({
-  airTraffic: createSelector(state => state.airTraffic, airTrafficState => airTrafficState),
+  dashboard: createSelector(state => state.dashboard, dashboardState => dashboardState),
 })
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(AirTrafficActions, dispatch)
+  return bindActionCreators(dashboardActions, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

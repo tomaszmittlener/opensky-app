@@ -1,12 +1,12 @@
-import * as airTraffic from '../constants/airTraffic'
+import * as dashboard from '../constants/dashboard'
 
 const initialState = {
   allFlights: [],
   loading: false,
   loaded: false,
   error: '',
-  flightsDistance: {},
-  dialogState: {
+  flightsByCities: {},
+  flightsListState: {
     isOpen: false,
     currentCity: '',
     distance: 50,
@@ -15,33 +15,33 @@ const initialState = {
 
 export default function counter(state = initialState, action) {
   switch (action.type) {
-    case airTraffic.ALL_GET_START:
+    case dashboard.ALL_GET_START:
       return { ...state, loading: true, loaded: false }
-    case airTraffic.ALL_GET_SUCCESS:
+    case dashboard.ALL_GET_SUCCESS:
       const allFlights = action.payload.states
       return { ...state, allFlights, loaded: true, loading: false }
-    case airTraffic.ALL_GET_ERROR:
+    case dashboard.ALL_GET_ERROR:
       const errorMsg = action.payload.message
       return { ...state, errorMsg, loaded: false, loading: false }
 
-    case airTraffic.CLOSEST_FLIGHTS_SET:
+    case dashboard.CLOSEST_FLIGHTS_SET:
       const { flights, city } = action.payload
-      const flightsDistance = { [city]: flights }
-      return { ...state, flightsDistance: { ...state.flightsDistance, ...flightsDistance } }
+      const flightsByCities = { [city]: flights }
+      return { ...state, flightsByCities: { ...state.flightsByCities, ...flightsByCities } }
 
-    case airTraffic.TOGGLE_DIALOG_SHOW:
+    case dashboard.TOGGLE_DIALOG_SHOW:
       const currentCity = action.payload ? action.payload : ''
-      const dialogState = {
-        ...state.dialogState,
-        isOpen: !state.dialogState.isOpen,
+      const flightsListState = {
+        ...state.flightsListState,
+        isOpen: !state.flightsListState.isOpen,
         currentCity: currentCity,
         distance: 50,
       }
-      return { ...state, dialogState }
+      return { ...state, flightsListState }
 
-    case airTraffic.PAGINATION_SET:
+    case dashboard.PAGINATION_SET:
       const distance = action.payload
-      return { ...state, dialogState: { ...state.dialogState, distance } }
+      return { ...state, flightsListState: { ...state.flightsListState, distance } }
 
     default:
       return state

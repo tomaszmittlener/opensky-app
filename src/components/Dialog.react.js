@@ -8,7 +8,12 @@ import PaginationButtons from '../components/PaginationButtons.react'
 
 class Dialog extends React.Component {
   render() {
-    const { dialogState: { isOpen, distance, currentCity }, toggleDialogShow, flightsList, setPagination } = this.props
+    const {
+      flightsListState: { isOpen, distance, currentCity },
+      toggleDialogShow,
+      flightsList,
+      setPagination,
+    } = this.props
     return (
       <Modal show={isOpen} onHide={toggleDialogShow}>
         <Modal.Header closeButton>
@@ -31,7 +36,7 @@ Dialog.propTypes = {
   setPagination: PropTypes.func.isRequired,
   toggleDialogShow: PropTypes.func.isRequired,
   flightsList: PropTypes.array,
-  dialogState: PropTypes.object,
+  flightsListState: PropTypes.object,
 }
 
 export default Dialog
