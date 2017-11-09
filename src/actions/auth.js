@@ -32,7 +32,11 @@ export function loginAuthenticate() {
 
 export function loginUser(isLoggedIn) {
   return dispatch => {
-    sessionStorage.setItem('isLoggedIn', isLoggedIn)
+    if (isLoggedIn) {
+      sessionStorage.setItem('isLoggedIn', isLoggedIn)
+    } else {
+      sessionStorage.removeItem('isLoggedIn')
+    }
     dispatch(authenticate(isLoggedIn))
   }
 }
