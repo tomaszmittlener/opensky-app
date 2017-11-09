@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
-import { LoginForm } from 'components'
+import { LoginForm } from '../components'
 import styled from 'styled-components'
 import Modal from 'react-bootstrap/lib/Modal'
 

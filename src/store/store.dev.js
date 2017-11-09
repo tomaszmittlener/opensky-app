@@ -1,25 +1,26 @@
 import { createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import rootReducer from 'reducers'
+import rootReducer from '../reducers'
 import { routerMiddleware } from 'connected-react-router'
-import promiseMiddleware from 'redux-promise-middleware';
-
+import promiseMiddleware from 'redux-promise-middleware'
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [promiseMiddleware({
-    promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']
-  }), routerMiddleware(), ReduxThunk]
+  const middlewares = [
+    promiseMiddleware({
+      promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR'],
+    }),
+    routerMiddleware(),
+    ReduxThunk,
+  ]
   const enhancers = [
     applyMiddleware(...middlewares),
     // other store enhancers if any
   ]
-  const composeEnhancers = composeWithDevTools(
-    {
-      // other compose enhancers if any
-      // Specify here other options if needed
-    }
-  )
+  const composeEnhancers = composeWithDevTools({
+    // other compose enhancers if any
+    // Specify here other options if needed
+  })
   const store = createStore(rootReducer, initialState, composeEnhancers(...enhancers))
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

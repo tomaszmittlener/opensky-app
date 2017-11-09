@@ -92,13 +92,13 @@ my-app/
     tests/
     styles/
     utils/
-    index.js
+    Routes.react.js
 ```
 
 For the project to build, **these files must exist with exact filenames**:
 
 * `public/index.html` is the page template;
-* `src/index.js` is the JavaScript entry point.
+* `src/Routes.react.js` is the JavaScript entry point.
 
 You can delete or rename the other files.
 
@@ -154,9 +154,9 @@ Create Redux App use [Redux DevTools Extension](http://extension.remotedev.io/).
 ## Import Export Containers and Components
 
 ### Export
-To Export Components or Containers there is an `index.js` file in each root folder so you have to export it there first in order to import outside the root folder.
+To Export Components or Containers there is an `Routes.react.js` file in each root folder so you have to export it there first in order to import outside the root folder.
   ```js
-  index.js/
+  Routes.react.js/
     export { default as Comp1 } from './Comp1'
     export { default as Comp2 } from './Comp2'
   ```
@@ -227,7 +227,7 @@ You can add/remove rules if you want `prettier [opts] [filename ...]`. Prettier 
 ## Routing
 
 The best option for routing is [React Router](https://reacttraining.com/react-router/) specifically its new version for the web [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start). <br>
-`src/routes/index.js` is the starter point of the app, where all the routes are specified and render the containers and components. Specify here all your routes, redirects, transitions, etc.
+`src/routes/Routes.react.js` is the starter point of the app, where all the routes are specified and render the containers and components. Specify here all your routes, redirects, transitions, etc.
 
 
 ## Styled Components
@@ -299,7 +299,7 @@ npm run generate
 Allows you to auto-generate boilerplate code for common parts of your
 application, specifically `component`s and `container`s. You can
 also run `npm run generate <part>` to skip the first selection. (e.g. `npm run
-generate container`). This generators are outside yeoman so you can change them to fit your necessities, for this just go to `generators/index.js`, see [plop documentation](https://plopjs.com/documentation/) for more information.
+generate container`). This generators are outside yeoman so you can change them to fit your necessities, for this just go to `generators/Routes.react.js`, see [plop documentation](https://plopjs.com/documentation/) for more information.
 
 
 ## Reselect

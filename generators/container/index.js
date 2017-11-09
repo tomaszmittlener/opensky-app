@@ -66,7 +66,7 @@ module.exports = {
       {
         type: 'add',
         path: '../src/{{fileDir}}{{properCase name}}.js',
-        templateFile: './container/index.js.hbs',
+        templateFile: './container/Routes.react.js.hbs',
         abortOnFail: true,
       },
     ]

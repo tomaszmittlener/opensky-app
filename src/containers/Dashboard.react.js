@@ -5,7 +5,7 @@ import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as dashboardActions from '../actions/dashboard'
 import * as authActions from '../actions/auth'
-import { CitiesTable, Dialog, Loader, Header } from 'components'
+import { CitiesTable, Dialog, Loader, Header } from '../components'
 import { citiesList } from '../constants/citiesList'
 import styled from 'styled-components'
 
