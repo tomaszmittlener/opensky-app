@@ -20,7 +20,6 @@ export class Routes extends Component {
   componentDidMount() {
     if (sessionStorage.getItem('isLoggedIn')) {
       this.props.loginUser(true)
-      history.push('/')
     }
   }
 
@@ -39,5 +38,9 @@ export class Routes extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(AuthActions, dispatch)
 }
+const mapStateToProps = createStructuredSelector({
+  auth: createSelector(state => state.auth, authState => authState),
+  router: createSelector(state => state.router, authState => authState),
+})
 
-export default connect(() => {}, mapDispatchToProps)(Routes)
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)
