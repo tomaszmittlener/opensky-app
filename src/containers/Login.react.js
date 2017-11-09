@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { createStructuredSelector, createSelector } from 'reselect'
 import { bindActionCreators } from 'redux'
 import * as AuthActions from '../actions/auth'
-import Col from 'react-bootstrap/lib/Col'
-import PageHeader from 'react-bootstrap/lib/PageHeader'
 import { LoginForm } from 'components'
 import styled from 'styled-components'
 
 const LoginContainer = styled.div`
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+
   .login-title {
     text-align: center;
     padding: 10px 0;

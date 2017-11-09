@@ -5,37 +5,44 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import FormControl from 'react-bootstrap/lib/FormControl'
 import Button from 'react-bootstrap/lib/Button'
 import Form from 'react-bootstrap/lib/Form'
-import Checkbox from 'react-bootstrap/lib/Checkbox'
 import Col from 'react-bootstrap/lib/Col'
 
-const LoginForm = ({ onLoginChange, onPasswordChange, onLoginClick }) => (
-  <Form horizontal>
-    <FormGroup>
-      <Col xs={12}>
-        <ControlLabel>Login</ControlLabel>
+import styled from 'styled-components'
+const LoginFormContainer = styled.div`
+  display: flex;
+  justify-content: center;
 
-        <FormControl type="text" onChange={onLoginChange} />
-      </Col>
-    </FormGroup>
-    <FormGroup>
-      <Col sm={12}>
-        <ControlLabel>Password</ControlLabel>
-        <FormControl type="password" onChange={onPasswordChange} />
-      </Col>
-    </FormGroup>
-    <FormGroup>
-      <Col sm={12}>
-        <Checkbox>Remember me</Checkbox>
-      </Col>
-    </FormGroup>
-    <FormGroup>
-      <Col sm={12}>
-        <Button type="submit" onClick={onLoginClick}>
-          Login
-        </Button>
-      </Col>
-    </FormGroup>
-  </Form>
+  .login-form {
+    width: 300px;
+  }
+`
+
+const LoginForm = ({ onLoginChange, onPasswordChange, onLoginClick }) => (
+  <LoginFormContainer>
+    <Form horizontal className="login-form">
+      <FormGroup>
+        <Col xs={12}>
+          <ControlLabel>Login</ControlLabel>
+          <FormControl type="text" onChange={onLoginChange} />
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col sm={12}>
+          <ControlLabel>Password</ControlLabel>
+          <FormControl type="password" onChange={onPasswordChange} />
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col sm={12}>
+          <Button type="submit" onClick={onLoginClick}>
+            Login
+          </Button>
+        </Col>
+      </FormGroup>
+    </Form>
+  </LoginFormContainer>
 )
 
 LoginForm.propTypes = {
